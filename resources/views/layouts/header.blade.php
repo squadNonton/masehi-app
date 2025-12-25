@@ -28,7 +28,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/floating.css') }}" rel="stylesheet">
     <style>
         /* .blue-tr-bg {
             background-color: rgb(0, 191, 255);
@@ -79,7 +80,9 @@
                     <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-instagram"></i></a>
+                    <!-- Admin Login Icon -->
+                    <a class="btn btn-square btn-link rounded-0 border-0" href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" title="{{ auth()->check() ? 'Admin Panel' : 'Login Admin' }}"><i class="fas fa-user-shield"></i></a>
                 </div>
             </div>
         </div>
@@ -89,28 +92,32 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0"><i class="text-primary me-2"><img src="img/logomasehi.png" width="50" height="50" alt="Image"></i></h2>
+        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+            <h2 class="m-0"><i class="text-primary me-2"><img src="{{ asset('img/logomasehi.png') }}" width="50" height="50" alt="Image"></i></h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Beranda</a>
-                <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                <a href="courses.html" class="nav-item nav-link">Alumni</a>
+                <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
+                <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}">Tentang Kami</a>
+                <a href="{{ route('alumni') }}" class="nav-item nav-link {{ request()->routeIs('alumni') ? 'active' : '' }}">Alumni</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Informasi</a>
+                    <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('kegiatan*') || request()->routeIs('karya*') || request()->routeIs('galeri*') || request()->routeIs('prestasi*') || request()->routeIs('karir*') ? 'active' : '' }}" data-bs-toggle="dropdown">Informasi</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Kegiatan</a>
-                        <a href="appointment.html" class="dropdown-item">Karya</a>
-                        <a href="team.html" class="dropdown-item">Galeri</a>
-                        <a href="testimonial.html" class="dropdown-item">Prestasi</a>
-                        <a href="404.html" class="dropdown-item">Karir</a>
+                        <a href="{{ route('kegiatan') }}" class="dropdown-item"><i class="fas fa-calendar-alt me-2 text-primary"></i>Kegiatan</a>
+                        <a href="{{ route('karya') }}" class="dropdown-item"><i class="fas fa-paint-brush me-2 text-primary"></i>Karya</a>
+                        <a href="{{ route('galeri') }}" class="dropdown-item"><i class="fas fa-images me-2 text-primary"></i>Galeri</a>
+                        <a href="{{ route('prestasi') }}" class="dropdown-item"><i class="fas fa-trophy me-2 text-primary"></i>Prestasi</a>
+                        <a href="{{ route('karir') }}" class="dropdown-item"><i class="fas fa-briefcase me-2 text-primary"></i>Karir</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
+                <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Hubungi Kami</a>
+                <!-- Mobile Login Link -->
+                <a href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" class="nav-item nav-link d-lg-none">
+                    <i class="fas fa-user-shield me-1"></i> {{ auth()->check() ? 'Admin Panel' : 'Login Admin' }}
+                </a>
             </div>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">WhatsApps<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
