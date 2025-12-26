@@ -4,35 +4,34 @@
     <div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/backwall3.png" alt="Image">
+                <?php $__currentLoopData = $carousels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $carousel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
+                    <img class="w-100" src="<?php echo e(asset('img/carousel/' . $carousel->gambar)); ?>" alt="<?php echo e($carousel->judul); ?>">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
-                                    <h1 class="display-2 text-light mb-5 animated slideInDown foncam"><b class="foncam focol">LIGHT</b> Up Your Future</h1>
-                                    <a href="" class="btn btn-primary py-sm-3 px-sm-5">Daftar Sekarang</a>
-                                    <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">Mengapa Memilih Kami?</a>
+                                    <h1 class="display-2 text-light mb-5 animated slideInDown foncam">
+                                        <?php if($carousel->subjudul): ?>
+                                            <?php echo e($carousel->judul); ?>
+
+                                            <br><span class="focol"><?php echo $carousel->subjudul; ?></span>
+                                        <?php else: ?>
+                                            <b class="foncam focol">LIGHT</b> Up Your Future
+                                        <?php endif; ?>
+                                    </h1>
+                                    <?php if($carousel->teks_tombol_1): ?>
+                                        <a href="<?php echo e($carousel->link_tombol_1 ?? '#'); ?>" class="btn btn-primary py-sm-3 px-sm-5"><?php echo e($carousel->teks_tombol_1); ?></a>
+                                    <?php endif; ?>
+                                    <?php if($carousel->teks_tombol_2): ?>
+                                        <a href="<?php echo e($carousel->link_tombol_2 ?? '#'); ?>" class="btn btn-light py-sm-3 px-sm-5 ms-3"><?php echo e($carousel->teks_tombol_2); ?></a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="img/backwall2.png" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-7">
-                                    <h1 class="display-2 text-light mb-5 animated slideInDown">LIGHT</h1>
-                                    <h1 class="display-2 text-light mb-5 animated slideInDown focol">Love Intelligent Gritty Humble Trustworthy</h1>
-                                    <!-- <a href="" class="btn btn-primary py-sm-3 px-sm-5"></a> -->
-                                    <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">Enroll Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
@@ -47,6 +46,7 @@
         </div>
     </div>
     <!-- Carousel End -->
+
 
 
     <!-- Sub Container Start -->
@@ -301,215 +301,192 @@
                 <h1 class="display-6 mb-4">Our Courses Upskill You</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="<?php echo e(0.1 + ($index * 0.2)); ?>s">
                     <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
                         <div class="text-center p-4 pt-0">
-                        <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">First</div>
-                        <h5 class="mb-3">Penguatan Karakter</h5>
-                        <p>Program Penguatan Karakter menumbuhkan murid yang berintegritas, disiplin, dan peduli. Dengan semangat “Light Up Your Future”, murid diarahkan untuk membangun karakter positif sebagai bekal meraih masa depan yang cerah.</p>
-                        <ol class="breadcrumb justify-content-center mb-0 flex-wrap text-center fw-bold">
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-chalkboard-teacher text-primary me-2"></i>
-                                Teachers and Students in Action
-                            </li>
+                            <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4"><?php echo e($program->badge); ?></div>
+                            <h5 class="mb-3"><?php echo e($program->judul); ?></h5>
+                            <div><?php echo $program->deskripsi; ?></div>
+                            <ol class="breadcrumb justify-content-center mb-0 flex-wrap text-center fw-bold">
+                                <?php $__currentLoopData = $program->items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li class="breadcrumb-item small d-flex align-items-center">
+                                    <i class="<?php echo e($item->icon); ?> text-primary me-2"></i>
+                                    <?php echo e($item->judul); ?>
 
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-calendar-check text-primary me-2"></i>
-                                SMASHKU Friday LIGHT
-                            </li>
-
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-user-tie text-primary me-2"></i>
-                                Teachers Act
-                            </li>
-
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-book-reader text-primary me-2"></i>
-                                Long Life Learning
-                            </li>
-
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-lightbulb text-primary me-2"></i>
-                                LIGHT UP
-                            </li>
-
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-users text-primary me-2"></i>
-                                LIGHT SQUAD
-                            </li>
-
-                            <li class="breadcrumb-item small d-flex align-items-center">
-                                <i class="fa fa-campground text-primary me-2"></i>
-                                LIGHT Leadership Camp
-                            </li>
-
-                        </ol>
-
-                    </div>
-                        <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/sampel-1.jpg" alt="">
-                            <div class="courses-overlay">
-                                <a class="btn btn-outline-primary border-2" href="">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
-                        <div class="text-center p-4 pt-0">
-                            <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">Second</div>
-                            <h5 class="mb-3">Insan Pembelajar dan Berwawasan Lingkungan</h5>
-                            <p>SMA Masehi Kudus membentuk murid menjadi insan pembelajar yang kritis dan kreatif, serta memiliki kepedulian terhadap lingkungan. Tagline “Light Up Your Future” menjadi dorongan bagi murid untuk terus belajar dan menjaga keberlanjutan bumi.</p>
-                            <ol class="breadcrumb justify-content-center mb-0">
-                                <ol class="breadcrumb justify-content-center mb-0 flex-wrap text-center fw-bold">
-                                    <li class="breadcrumb-item small d-flex align-items-center">
-                                        <i class="fa fa-graduation-cap text-primary me-2"></i>
-                                        Scholar Spark
-                                    </li>
-
-                                    <li class="breadcrumb-item small d-flex align-items-center">
-                                        <i class="fa fa-university text-primary me-2"></i>
-                                        University Preparation Program
-                                    </li>
-
-                                    <li class="breadcrumb-item small d-flex align-items-center">
-                                        <i class="fa fa-briefcase text-primary me-2"></i>
-                                        Life Skill Program
-                                    </li>
-
-                                    <li class="breadcrumb-item small d-flex align-items-center">
-                                        <i class="fa fa-star text-primary me-2"></i>
-                                        EDUSHINE
-                                    </li>
-
-                                    <li class="breadcrumb-item small d-flex align-items-center">
-                                        <i class="fa fa-users-cog text-primary me-2"></i>
-                                        Learning Circle
-                                    </li>
-
-                                </ol>
-
+                                </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ol>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/sampel-2.jpg" alt="">
+                            <img class="img-fluid" src="<?php echo e(asset('img/program/' . $program->gambar)); ?>" alt="<?php echo e($program->judul); ?>">
                             <div class="courses-overlay">
-                                <a class="btn btn-outline-primary border-2" href="">Read More</a>
+                                <a class="btn btn-outline-primary border-2" href="<?php echo e($program->link_detail ?? '#'); ?>">Read More</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
-                        <div class="text-center p-4 pt-0">
-                            <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">Third</div>
-                            <h5 class="mb-3">Terwujudnya Murid yang Berprestasi</h5>
-                            <p>Sekolah berkomitmen melahirkan murid berprestasi melalui pembelajaran inovatif dan dukungan penuh terhadap bakat serta minat murid. Dengan “Light Up Your Future”, siswa dituntun menyalakan potensi terbaik dan meraih prestasi optimal.</p>
-                            <ol class="breadcrumb justify-content-center mb-0 fw-bold">
-                                <li class="breadcrumb-item small d-flex align-items-center">
-                                    <i class="fa fa-award text-primary me-2"></i>
-                                    MEADY (Masehi Achievement in Studying)
-                                </li>
-
-                                <li class="breadcrumb-item small d-flex align-items-center">
-                                    <i class="fa fa-brain text-primary me-2"></i>
-                                    Smartgency
-                                </li>
-
-                                <li class="breadcrumb-item small d-flex align-items-center">
-                                    <i class="fa fa-compass text-primary me-2"></i>
-                                    Orientasi Profesi
-                                </li>
-                            </ol>
-                        </div>
-                        <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/sampel-3.jpg" alt="">
-                            <div class="courses-overlay">
-                                <a class="btn btn-outline-primary border-2" href="">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="bg-primary text-center p-5 rounded-4">
                         <h1 class="mb-4 text-white">High School Admission Form</h1>
                         <p class="text-white mb-4">Please fill out the form below to register for the New Student Admission.</p>
 
-                        <form>
+                        <form action="<?php echo e(route('pendaftaran.storePhase1')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            
+                            <!-- Alert Area -->
+                            <?php if(session('success')): ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <?php echo e(session('success')); ?>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(session('error')): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <?php echo e(session('error')); ?>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
+
                             <div class="row g-3">
 
-                                <!-- Student Full Name -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="student_name" placeholder="Full Name">
-                                        <label for="student_name">Student Full Name</label>
-                                    </div>
-                                </div>
-
-                                <!-- NISN / Student ID -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="nisn" placeholder="Student ID">
-                                        <label for="nisn">Student ID (NISN)</label>
-                                    </div>
-                                </div>
-
-                                <!-- Previous School -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="previous_school" placeholder="Previous School">
-                                        <label for="previous_school">Previous School</label>
-                                    </div>
-                                </div>
-
-                                <!-- Parent Phone Number -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="parent_phone" placeholder="Parent Phone Number">
-                                        <label for="parent_phone">Parent Phone Number</label>
-                                    </div>
-                                </div>
-
-                                <!-- Parent Email -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control border-0" id="parent_email" placeholder="Parent Email">
-                                        <label for="parent_email">Parent Email</label>
-                                    </div>
-                                </div>
-
-                                <!-- Major Selection -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <select class="form-control border-0" id="major">
-                                            <option value="">-- Select Major --</option>
-                                            <option>Science (MIPA)</option>
-                                            <option>Social Studies (IPS)</option>
-                                            <option>Language</option>
-                                        </select>
-                                        <label for="major">Preferred Major</label>
-                                    </div>
-                                </div>
-
-                                <!-- Address -->
+                                <!-- Nama Lengkap -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border-0" placeholder="Home Address" id="address" style="height: 100px"></textarea>
-                                        <label for="address">Home Address</label>
+                                        <input type="text" class="form-control border-0 <?php $__errorArgs = ['nama_lengkap'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" value="<?php echo e(old('nama_lengkap')); ?>" required>
+                                        <label for="nama_lengkap">Nama Lengkap</label>
+                                        <?php $__errorArgs = ['nama_lengkap'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
-                                <!-- Additional Notes -->
+                                <!-- Email Akun -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border-0" placeholder="Additional notes (optional)" id="notes" style="height: 100px"></textarea>
-                                        <label for="notes">Additional Notes</label>
+                                        <input type="email" class="form-control border-0 <?php $__errorArgs = ['email_akun'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="email_akun" name="email_akun" placeholder="Email Akun" value="<?php echo e(old('email_akun')); ?>" required>
+                                        <label for="email_akun">Email (Untuk Akun)</label>
+                                        <?php $__errorArgs = ['email_akun'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                                <!-- No HP Siswa -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 <?php $__errorArgs = ['no_hp_siswa'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="no_hp_siswa" name="no_hp_siswa" placeholder="No HP Siswa (WA)" value="<?php echo e(old('no_hp_siswa')); ?>" required>
+                                        <label for="no_hp_siswa">No. HP Siswa (WA)</label>
+                                        <?php $__errorArgs = ['no_hp_siswa'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Tempat Lahir -->
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 <?php $__errorArgs = ['tempat_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" value="<?php echo e(old('tempat_lahir')); ?>" required>
+                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                        <?php $__errorArgs = ['tempat_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Tanggal Lahir -->
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control border-0 <?php $__errorArgs = ['tgl_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir" value="<?php echo e(old('tgl_lahir')); ?>" required>
+                                        <label for="tgl_lahir">Tanggal Lahir</label>
+                                        <?php $__errorArgs = ['tgl_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
                                 <!-- Submit -->
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Submit Registration</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit">Daftar Sekarang & Lanjut Tahap 2</button>
                                 </div>
 
                             </div>
@@ -529,70 +506,30 @@
                 <h1 class="display-6 mb-4">We Have Great Experience In Teaching</h1>
             </div>
             <div class="row g-0 team-items">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <?php $__currentLoopData = $gurus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $guru): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="<?php echo e(0.1 + ($index * 0.2)); ?>s">
                     <div class="team-item position-relative">
                         <div class="position-relative">
-                            <img class="img-fluid" src="img/copyBoy1.png" alt="">
+                            <img class="img-fluid" src="<?php echo e(asset('img/guru/' . $guru->foto)); ?>" alt="<?php echo e($guru->nama); ?>">
                             <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                                <?php if($guru->facebook): ?>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="<?php echo e($guru->facebook); ?>"><i class="fab fa-facebook-f"></i></a>
+                                <?php endif; ?>
+                                <?php if($guru->twitter): ?>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="<?php echo e($guru->twitter); ?>"><i class="fab fa-twitter"></i></a>
+                                <?php endif; ?>
+                                <?php if($guru->instagram): ?>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="<?php echo e($guru->instagram); ?>"><i class="fab fa-instagram"></i></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">Full Name</h5>
-                            <span>Trainer</span>
+                            <h5 class="mt-2"><?php echo e($guru->nama); ?></h5>
+                            <span><?php echo e($guru->jabatan); ?></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/copyGirl2.png" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">Full Name</h5>
-                            <span>Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/copyBoy1.png" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">Full Name</h5>
-                            <span>Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid h-10" src="img/copyGirl2.png" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">Full Name</h5>
-                            <span>Trainer</span>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </div>
