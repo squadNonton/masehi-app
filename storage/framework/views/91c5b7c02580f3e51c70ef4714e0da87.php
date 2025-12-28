@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Get In Touch</h4>
                     <h2 class="text-primary mb-4">
-                        <img src="img/logomasehi.png" width="50" height="50" alt="Image"><p class="fs-3 m-1">SMA Masehi Kudus</p>
+                        <img src="<?php echo e(asset('img/logomasehi.png')); ?>" width="50" height="50" alt="Image"><p class="fs-3 m-1">SMA Masehi Kudus</p>
                     </h2>
                     <p class="mb-2">
                         <i class="fa fa-map-marker-alt me-3"></i>

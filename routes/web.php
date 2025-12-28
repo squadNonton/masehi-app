@@ -45,6 +45,15 @@ Route::get('/karir/{slug}', [HomeController::class, 'karirDetail'])->name('karir
 Route::get('/hubungi-kami', [HomeController::class, 'contact'])->name('contact');
 Route::post('/hubungi-kami', [HomeController::class, 'sendContact'])->name('contact.send');
 
+<<<<<<< HEAD
+=======
+// Pendaftaran (Public Phase 1 & 2)
+use App\Http\Controllers\PendaftaranController as PublicPendaftaranController;
+Route::post('/pendaftaran/phase1', [PublicPendaftaranController::class, 'storePhase1'])->name('pendaftaran.storePhase1');
+Route::get('/pendaftaran/{id}/step2', [PublicPendaftaranController::class, 'step2'])->name('pendaftaran.step2');
+Route::put('/pendaftaran/{id}/step2', [PublicPendaftaranController::class, 'updateStep2'])->name('pendaftaran.updateStep2');
+
+>>>>>>> b608a8c210a690e0f4164193303d50a77deddb4d
 // ===== ADMIN ROUTES (Protected) =====
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -54,9 +63,16 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('program', ProgramController::class);
     Route::resource('guru', GuruController::class);
     
+<<<<<<< HEAD
     // Pendaftaran (read-only with status update)
     Route::get('pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
     Route::patch('pendaftaran/{id}/status', [PendaftaranController::class, 'updateStatus'])->name('pendaftaran.updateStatus');
+=======
+    // Pendaftaran (CRUD)
+    Route::get('pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+    Route::get('pendaftaran/{id}', [PendaftaranController::class, 'show'])->name('pendaftaran.show');
+    Route::delete('pendaftaran/{id}', [PendaftaranController::class, 'destroy'])->name('pendaftaran.destroy');
+>>>>>>> b608a8c210a690e0f4164193303d50a77deddb4d
     
     // Kontak (read-only with mark as read)
     Route::get('kontak', [KontakController::class, 'index'])->name('kontak.index');

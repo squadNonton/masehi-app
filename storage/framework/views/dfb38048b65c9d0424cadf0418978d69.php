@@ -332,81 +332,161 @@
                         <h1 class="mb-4 text-white">High School Admission Form</h1>
                         <p class="text-white mb-4">Please fill out the form below to register for the New Student Admission.</p>
 
-                        <form>
+                        <form action="<?php echo e(route('pendaftaran.storePhase1')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            
+                            <!-- Alert Area -->
+                            <?php if(session('success')): ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <?php echo e(session('success')); ?>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(session('error')): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <?php echo e(session('error')); ?>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
+
                             <div class="row g-3">
 
-                                <!-- Student Full Name -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="student_name" placeholder="Full Name">
-                                        <label for="student_name">Student Full Name</label>
-                                    </div>
-                                </div>
-
-                                <!-- NISN / Student ID -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="nisn" placeholder="Student ID">
-                                        <label for="nisn">Student ID (NISN)</label>
-                                    </div>
-                                </div>
-
-                                <!-- Previous School -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="previous_school" placeholder="Previous School">
-                                        <label for="previous_school">Previous School</label>
-                                    </div>
-                                </div>
-
-                                <!-- Parent Phone Number -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="parent_phone" placeholder="Parent Phone Number">
-                                        <label for="parent_phone">Parent Phone Number</label>
-                                    </div>
-                                </div>
-
-                                <!-- Parent Email -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control border-0" id="parent_email" placeholder="Parent Email">
-                                        <label for="parent_email">Parent Email</label>
-                                    </div>
-                                </div>
-
-                                <!-- Major Selection -->
-                                <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <select class="form-control border-0" id="major">
-                                            <option value="">-- Select Major --</option>
-                                            <option>Science (MIPA)</option>
-                                            <option>Social Studies (IPS)</option>
-                                            <option>Language</option>
-                                        </select>
-                                        <label for="major">Preferred Major</label>
-                                    </div>
-                                </div>
-
-                                <!-- Address -->
+                                <!-- Nama Lengkap -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border-0" placeholder="Home Address" id="address" style="height: 100px"></textarea>
-                                        <label for="address">Home Address</label>
+                                        <input type="text" class="form-control border-0 <?php $__errorArgs = ['nama_lengkap'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" value="<?php echo e(old('nama_lengkap')); ?>" required>
+                                        <label for="nama_lengkap">Nama Lengkap</label>
+                                        <?php $__errorArgs = ['nama_lengkap'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
-                                <!-- Additional Notes -->
+                                <!-- Email Akun -->
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border-0" placeholder="Additional notes (optional)" id="notes" style="height: 100px"></textarea>
-                                        <label for="notes">Additional Notes</label>
+                                        <input type="email" class="form-control border-0 <?php $__errorArgs = ['email_akun'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="email_akun" name="email_akun" placeholder="Email Akun" value="<?php echo e(old('email_akun')); ?>" required>
+                                        <label for="email_akun">Email (Untuk Akun)</label>
+                                        <?php $__errorArgs = ['email_akun'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                                <!-- No HP Siswa -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 <?php $__errorArgs = ['no_hp_siswa'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="no_hp_siswa" name="no_hp_siswa" placeholder="No HP Siswa (WA)" value="<?php echo e(old('no_hp_siswa')); ?>" required>
+                                        <label for="no_hp_siswa">No. HP Siswa (WA)</label>
+                                        <?php $__errorArgs = ['no_hp_siswa'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Tempat Lahir -->
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control border-0 <?php $__errorArgs = ['tempat_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" value="<?php echo e(old('tempat_lahir')); ?>" required>
+                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                        <?php $__errorArgs = ['tempat_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Tanggal Lahir -->
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control border-0 <?php $__errorArgs = ['tgl_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                            id="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir" value="<?php echo e(old('tgl_lahir')); ?>" required>
+                                        <label for="tgl_lahir">Tanggal Lahir</label>
+                                        <?php $__errorArgs = ['tgl_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
                                 <!-- Submit -->
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Submit Registration</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit">Daftar Sekarang & Lanjut Tahap 2</button>
                                 </div>
 
                             </div>
